@@ -69,8 +69,8 @@ public class RectangleSplit<TagType> {
 		}
 	}
 
-	public void addValue(int value, TagType description) {
-		arrayList.add(new SplitResult<TagType>(value, description));
+	public void addValue(int value, TagType tag) {
+		arrayList.add(new SplitResult<TagType>(value, tag));
 	}
 
 	public static class SplitResultList<TagType> {
@@ -125,9 +125,9 @@ public class RectangleSplit<TagType> {
 		private final TagType tag;
 		private Rectangle rectangle;
 
-		public SplitResult(int value, TagType description) {
+		public SplitResult(int value, TagType tag) {
 			this.value = value;
-			this.tag = description;
+			this.tag = tag;
 		}
 
 		public int getValue() {
