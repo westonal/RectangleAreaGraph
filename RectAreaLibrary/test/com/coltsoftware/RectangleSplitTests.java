@@ -105,6 +105,9 @@ public class RectangleSplitTests {
 		splitter.addValue(6, "C");
 		List<SplitResult> results = splitter.split(new Rectangle(0, 0, 10, 10));
 		assertEquals(3, results.size());
+		assertEquals(20, results.get(0).getRectangle().getArea());
+		assertEquals(20, results.get(1).getRectangle().getArea());
+		assertEquals(60, results.get(2).getRectangle().getArea());
 		assertEquals(new Rectangle(0, 0, 4, 5), results.get(0).getRectangle());
 		assertEquals(new Rectangle(0, 5, 4, 5), results.get(1).getRectangle());
 		assertEquals(new Rectangle(4, 0, 6, 10), results.get(2).getRectangle());

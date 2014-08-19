@@ -65,4 +65,8 @@ public final class Rectangle {
 		return String.format("[(%d, %d) %d x %d]", left, top, width, height);
 	}
 
+	public int getArea() {
+		return width * height;
+	}
+
 }

@@ -123,4 +123,16 @@ public class RectangleTests {
 		assertEquals("[(78, 102) 200 x 345]", ra.toString());
 	}
 
+	@Test
+	public void area() {
+		Rectangle rectangle = new Rectangle(7, 8, 3, 4);
+		assertEquals(12, rectangle.getArea());
+	}
+	
+	@Test
+	public void area2() {
+		Rectangle rectangle = new Rectangle(0, 0, 6, 8);
+		assertEquals(48, rectangle.getArea());
+	}
+
 }

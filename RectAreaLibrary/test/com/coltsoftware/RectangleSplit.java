@@ -30,11 +30,10 @@ public class RectangleSplit {
 		}
 
 		if (firstThirdCount < size && firstThirdCount > 1) {
-			SplitResultList clone = arrayList.subList(0, arrayList.size());
-			SplitResultList firstThird = clone.subList(0, firstThirdCount);
-			clone.fold(firstThirdCount);
-			processSubList(clone, rectangle, dirToggle);
-			processSubList(firstThird, clone.get(0).rectangle, !dirToggle);
+			SplitResultList firstThird = arrayList.subList(0, firstThirdCount);
+			arrayList.fold(firstThirdCount);
+			processSubList(arrayList, rectangle, dirToggle);
+			processSubList(firstThird, arrayList.get(0).rectangle, !dirToggle);
 			return;
 		}
 
