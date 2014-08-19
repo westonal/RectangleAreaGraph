@@ -1,7 +1,8 @@
-package com.coltsoftware;
+package com.coltsoftware.rectangleareagraph;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class RectangleSplit {
 

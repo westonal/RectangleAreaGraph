@@ -1,4 +1,4 @@
-package com.coltsoftware;
+package com.coltsoftware.rectangleareagraph;
 
 public final class Rectangle {
 

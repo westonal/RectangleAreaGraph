@@ -1,8 +1,10 @@
-package com.coltsoftware;
+package com.coltsoftware.rectangleareagraph;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.coltsoftware.rectangleareagraph.Rectangle;
 
 public class RectangleTests {
 

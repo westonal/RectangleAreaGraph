@@ -1,4 +1,4 @@
-package com.coltsoftware;
+package com.coltsoftware.rectangleareagraph;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.coltsoftware.RectangleSplit.SplitResult;
+import com.coltsoftware.rectangleareagraph.Rectangle;
+import com.coltsoftware.rectangleareagraph.RectangleSplit;
+import com.coltsoftware.rectangleareagraph.RectangleSplit.SplitResult;
 
 public class RectangleSplitTests {
 
