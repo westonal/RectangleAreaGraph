@@ -68,7 +68,7 @@ public class RectangleSplitTests {
 		assertEquals(new Rectangle(50, 0, 50, 100), results.get(1)
 				.getRectangle());
 	}
-	
+
 	@Test
 	public void can_split_three_even_items() {
 		splitter.addValue(7, "Red");
@@ -80,8 +80,21 @@ public class RectangleSplitTests {
 		assertEquals(new Rectangle(0, 0, 33, 100), results.get(0)
 				.getRectangle());
 		assertEquals(new Rectangle(33, 0, 33, 100), results.get(1)
-				.getRectangle());		
+				.getRectangle());
 		assertEquals(new Rectangle(66, 0, 34, 100), results.get(2)
+				.getRectangle());
+	}
+
+	@Test
+	public void can_split_two_items_unevenly() {
+		splitter.addValue(3, "Red");
+		splitter.addValue(1, "Green");
+		List<SplitResult> results = splitter
+				.split(new Rectangle(0, 0, 100, 100));
+		assertEquals(2, results.size());
+		assertEquals(new Rectangle(0, 0, 75, 100), results.get(0)
+				.getRectangle());
+		assertEquals(new Rectangle(75, 0, 25, 100), results.get(1)
 				.getRectangle());
 	}
 

@@ -8,14 +8,20 @@ public class RectangleSplit {
 	private final ArrayList<SplitResult> arrayList = new ArrayList<SplitResult>();
 
 	public List<SplitResult> split(Rectangle rectangle) {
+		final int size = arrayList.size();
+
+		int total = 0;
+		for (int i2 = 0; i2 < size; i2++)
+			total += arrayList.get(i2).value;
 
 		int width = rectangle.getWidth();
-		int size = arrayList.size();
+
 		for (int i = 0; i < size; i++) {
 			SplitResult result = arrayList.get(i);
-			int width2 = i == (size - 1) ? width : rectangle.getWidth() / size;
-			result.rectangle = new Rectangle(rectangle.getLeft() + i
-					* rectangle.getWidth() / size, rectangle.getTop(), width2,
+			int width2 = i == (size - 1) ? width : result.value
+					* rectangle.getWidth() / total;
+			result.rectangle = new Rectangle(rectangle.getLeft()
+					+ rectangle.getWidth() - width, rectangle.getTop(), width2,
 					rectangle.getHeight());
 			width -= width2;
 		}
