@@ -1,21 +1,20 @@
 package com.coltsoftware.rectangleareagraph;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class RectangleSplit {
+public class RectangleSplit<TagType> {
 
-	private final SplitResultList arrayList = new SplitResultList();
+	private final SplitResultList<TagType> arrayList = new SplitResultList<TagType>();
 
-	public List<SplitResult> split(Rectangle rectangle) {
+	public List<SplitResult<TagType>> split(Rectangle rectangle) {
 		Collections.sort(arrayList.arrayList);
 		processSubList(arrayList.subList(0, arrayList.size()), rectangle, false);
 		return arrayList.asList();
 	}
 
-	private static void processSubList(SplitResultList arrayList,
+	private void processSubList(SplitResultList<TagType> arrayList,
 			Rectangle rectangle, boolean dirToggle) {
 		int total = arrayList.getTotal();
 
@@ -33,7 +32,8 @@ public class RectangleSplit {
 		}
 
 		if (firstThirdCount < size && firstThirdCount > 1) {
-			SplitResultList firstThird = arrayList.subList(0, firstThirdCount);
+			SplitResultList<TagType> firstThird = arrayList.subList(0,
+					firstThirdCount);
 			arrayList.fold(firstThirdCount);
 			processSubList(arrayList, rectangle, dirToggle);
 			processSubList(firstThird, arrayList.get(0).rectangle, !dirToggle);
@@ -44,7 +44,7 @@ public class RectangleSplit {
 			int height = rectangle.getHeight();
 
 			for (int i = 0; i < size; i++) {
-				SplitResult result = arrayList.get(i);
+				SplitResult<TagType> result = arrayList.get(i);
 				int height2 = i == (size - 1) ? height : result.value
 						* rectangle.getHeight() / total;
 				int left = rectangle.getLeft();
@@ -57,7 +57,7 @@ public class RectangleSplit {
 			int width = rectangle.getWidth();
 
 			for (int i = 0; i < size; i++) {
-				SplitResult result = arrayList.get(i);
+				SplitResult<TagType> result = arrayList.get(i);
 				int width2 = i == (size - 1) ? width : result.value
 						* rectangle.getWidth() / total;
 				int left = rectangle.getLeft() + rectangle.getWidth() - width;
@@ -69,12 +69,12 @@ public class RectangleSplit {
 		}
 	}
 
-	public void addValue(int value, String description) {
-		arrayList.add(new SplitResult(value, description));
+	public void addValue(int value, TagType description) {
+		arrayList.add(new SplitResult<TagType>(value, description));
 	}
 
-	public static class SplitResultList {
-		private final ArrayList<SplitResult> arrayList = new ArrayList<SplitResult>();
+	public static class SplitResultList<TagType> {
+		private final ArrayList<SplitResult<TagType>> arrayList = new ArrayList<SplitResult<TagType>>();
 
 		public int size() {
 			return arrayList.size();
@@ -84,19 +84,20 @@ public class RectangleSplit {
 			int subTotal = 0;
 			for (int i = 0; i < count; i++)
 				subTotal += arrayList.remove(0).value;
-			SplitResult combined = new SplitResult(subTotal, "Combined");
+			SplitResult<TagType> combined = new SplitResult<TagType>(subTotal,
+					null);
 			arrayList.add(0, combined);
 		}
 
-		public SplitResult get(int index) {
+		public SplitResult<TagType> get(int index) {
 			return arrayList.get(index);
 		}
 
-		public void add(SplitResult splitResult) {
+		public void add(SplitResult<TagType> splitResult) {
 			arrayList.add(splitResult);
 		}
 
-		public List<SplitResult> asList() {
+		public List<SplitResult<TagType>> asList() {
 			return arrayList;
 		}
 
@@ -108,8 +109,8 @@ public class RectangleSplit {
 			return total;
 		}
 
-		public SplitResultList subList(int startAt, int count) {
-			SplitResultList splitResultList = new SplitResultList();
+		public SplitResultList<TagType> subList(int startAt, int count) {
+			SplitResultList<TagType> splitResultList = new SplitResultList<TagType>();
 			for (int i = startAt; i < startAt + count; i++)
 				splitResultList.add(get(i));
 			return splitResultList;
@@ -117,23 +118,24 @@ public class RectangleSplit {
 
 	}
 
-	public static class SplitResult implements Comparable<SplitResult> {
+	public static class SplitResult<TagType> implements
+			Comparable<SplitResult<TagType>> {
 
 		private final int value;
-		private final String description;
+		private final TagType tag;
 		private Rectangle rectangle;
 
-		public SplitResult(int value, String description) {
+		public SplitResult(int value, TagType description) {
 			this.value = value;
-			this.description = description;
+			this.tag = description;
 		}
 
 		public int getValue() {
 			return value;
 		}
 
-		public String getDescription() {
-			return description;
+		public TagType getTag() {
+			return tag;
 		}
 
 		public Rectangle getRectangle() {
@@ -141,7 +143,7 @@ public class RectangleSplit {
 		}
 
 		@Override
-		public int compareTo(SplitResult other) {
+		public int compareTo(SplitResult<TagType> other) {
 			return value - other.value;
 		}
 
