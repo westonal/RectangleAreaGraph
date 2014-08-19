@@ -9,13 +9,15 @@ public class RectangleSplit {
 
 	public List<SplitResult> split(Rectangle rectangle) {
 
-		for (int i = 0; i < arrayList.size(); i++) {
+		int width = rectangle.getWidth();
+		int size = arrayList.size();
+		for (int i = 0; i < size; i++) {
 			SplitResult result = arrayList.get(i);
+			int width2 = i == (size - 1) ? width : rectangle.getWidth() / size;
 			result.rectangle = new Rectangle(rectangle.getLeft() + i
-					* rectangle.getWidth() / arrayList.size(),
-					rectangle.getTop(),
-					rectangle.getWidth() / arrayList.size(),
+					* rectangle.getWidth() / size, rectangle.getTop(), width2,
 					rectangle.getHeight());
+			width -= width2;
 		}
 
 		return arrayList;
