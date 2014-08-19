@@ -98,4 +98,16 @@ public class RectangleSplitTests {
 				.getRectangle());
 	}
 
+	@Test
+	public void can_split_thee_items_first_two_required_to_make_a_third_of_total() {
+		splitter.addValue(2, "A");
+		splitter.addValue(2, "B");
+		splitter.addValue(6, "C");
+		List<SplitResult> results = splitter.split(new Rectangle(0, 0, 10, 10));
+		assertEquals(3, results.size());
+		assertEquals(new Rectangle(0, 0, 4, 5), results.get(0).getRectangle());
+		assertEquals(new Rectangle(0, 5, 4, 5), results.get(1).getRectangle());
+		assertEquals(new Rectangle(4, 0, 6, 10), results.get(2).getRectangle());
+	}
+
 }
