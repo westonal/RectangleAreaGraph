@@ -89,14 +89,14 @@ public class RectangleSplitTests {
 
 	@Test
 	public void can_split_two_items_unevenly() {
-		splitter.addValue(3, "Red");
 		splitter.addValue(1, "Green");
+		splitter.addValue(3, "Red");
 		List<SplitResult> results = splitter
 				.split(new Rectangle(0, 0, 100, 100));
 		assertEquals(2, results.size());
-		assertEquals(new Rectangle(0, 0, 75, 100), results.get(0)
+		assertEquals(new Rectangle(0, 0, 25, 100), results.get(0)
 				.getRectangle());
-		assertEquals(new Rectangle(75, 0, 25, 100), results.get(1)
+		assertEquals(new Rectangle(25, 0, 75, 100), results.get(1)
 				.getRectangle());
 	}
 
@@ -110,6 +110,23 @@ public class RectangleSplitTests {
 		assertEquals(20, results.get(0).getRectangle().getArea());
 		assertEquals(20, results.get(1).getRectangle().getArea());
 		assertEquals(60, results.get(2).getRectangle().getArea());
+		assertEquals(new Rectangle(0, 0, 4, 5), results.get(0).getRectangle());
+		assertEquals(new Rectangle(0, 5, 4, 5), results.get(1).getRectangle());
+		assertEquals(new Rectangle(4, 0, 6, 10), results.get(2).getRectangle());
+	}
+
+	@Test
+	public void sorts_automatically() {
+		splitter.addValue(6, "C");
+		splitter.addValue(2, "A");
+		splitter.addValue(2, "B");
+		List<SplitResult> results = splitter.split(new Rectangle(0, 0, 10, 10));
+		assertEquals(3, results.size());
+		assertEquals(20, results.get(0).getRectangle().getArea());
+		assertEquals(20, results.get(1).getRectangle().getArea());
+		assertEquals(60, results.get(2).getRectangle().getArea());
+		assertEquals("A", results.get(0).getDescription());
+		assertEquals("B", results.get(1).getDescription());
 		assertEquals(new Rectangle(0, 0, 4, 5), results.get(0).getRectangle());
 		assertEquals(new Rectangle(0, 5, 4, 5), results.get(1).getRectangle());
 		assertEquals(new Rectangle(4, 0, 6, 10), results.get(2).getRectangle());

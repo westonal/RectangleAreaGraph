@@ -1,14 +1,16 @@
 package com.coltsoftware.rectangleareagraph;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-
 
 public class RectangleSplit {
 
 	private final SplitResultList arrayList = new SplitResultList();
 
 	public List<SplitResult> split(Rectangle rectangle) {
+		Collections.sort(arrayList.arrayList);
 		processSubList(arrayList.subList(0, arrayList.size()), rectangle, false);
 		return arrayList.asList();
 	}
@@ -115,7 +117,7 @@ public class RectangleSplit {
 
 	}
 
-	public static class SplitResult {
+	public static class SplitResult implements Comparable<SplitResult> {
 
 		private final int value;
 		private final String description;
@@ -136,6 +138,11 @@ public class RectangleSplit {
 
 		public Rectangle getRectangle() {
 			return rectangle;
+		}
+
+		@Override
+		public int compareTo(SplitResult other) {
+			return value - other.value;
 		}
 
 	}
