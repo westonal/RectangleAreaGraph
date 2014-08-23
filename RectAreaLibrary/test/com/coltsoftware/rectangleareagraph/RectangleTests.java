@@ -137,4 +137,27 @@ public class RectangleTests {
 		assertEquals(48, rectangle.getArea());
 	}
 
+	@Test
+	public void can_create_and_read_right() {
+		Rectangle rectangle = new Rectangle(10, 0, 1, 1);
+		assertEquals(rectangle.getRight(), 11);
+	}
+	
+	@Test
+	public void can_create_and_read_right_2() {
+		Rectangle rectangle = new Rectangle(10, 0, 40, 1);
+		assertEquals(rectangle.getRight(), 50);
+	}
+	
+	@Test
+	public void can_create_and_read_bottom() {
+		Rectangle rectangle = new Rectangle(0, 10, 1, 1);
+		assertEquals(rectangle.getBottom(), 11);
+	}
+	
+	@Test
+	public void can_create_and_read_bottom_2() {
+		Rectangle rectangle = new Rectangle(0, 10, 1, 40);
+		assertEquals(rectangle.getBottom(), 50);
+	}
 }

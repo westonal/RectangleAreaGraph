@@ -6,20 +6,32 @@ public final class Rectangle {
 	private final int top;
 	private final int width;
 	private final int height;
+	private final int right;
+	private final int bottom;
 
 	public Rectangle(int left, int top, int width, int height) {
 		this.left = left;
 		this.top = top;
 		this.width = width;
 		this.height = height;
+		right = width + left;
+		bottom = height + top;
 	}
 
 	public int getLeft() {
 		return left;
 	}
 
+	public int getRight() {
+		return right;
+	}
+
 	public int getTop() {
 		return top;
+	}
+
+	public int getBottom() {
+		return bottom;
 	}
 
 	public int getWidth() {
@@ -67,6 +79,10 @@ public final class Rectangle {
 
 	public int getArea() {
 		return width * height;
+	}
+
+	public boolean inside(int x, int y) {
+		return x >= left && x <= right && y >= top && y <= bottom;
 	}
 
 }
