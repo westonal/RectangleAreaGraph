@@ -16,11 +16,11 @@ public class RectangleSplit<TagType> {
 
 	private void processSubList(SplitResultList<TagType> arrayList,
 			Rectangle rectangle, boolean dirToggle) {
-		int total = arrayList.getTotal();
+		long total = arrayList.getTotal();
 
-		int oneThird = total / 3;
+		long oneThird = total / 3;
 
-		int t2 = 0;
+		long t2 = 0;
 		int size = arrayList.size();
 		int firstThirdCount = 0;
 		for (int i3 = 0; i3 < size; i3++) {
@@ -45,8 +45,8 @@ public class RectangleSplit<TagType> {
 
 			for (int i = 0; i < size; i++) {
 				SplitResult<TagType> result = arrayList.get(i);
-				int height2 = i == (size - 1) ? height : result.value
-						* rectangle.getHeight() / total;
+				int height2 = (int) (i == (size - 1) ? height
+						: ((long) result.value) * rectangle.getHeight() / total);
 				int left = rectangle.getLeft();
 				int top = rectangle.getTop() + rectangle.getHeight() - height;
 				int width = rectangle.getWidth();
@@ -58,8 +58,8 @@ public class RectangleSplit<TagType> {
 
 			for (int i = 0; i < size; i++) {
 				SplitResult<TagType> result = arrayList.get(i);
-				int width2 = i == (size - 1) ? width : result.value
-						* rectangle.getWidth() / total;
+				int width2 = (int) (i == (size - 1) ? width
+						: ((long) result.value) * rectangle.getWidth() / total);
 				int left = rectangle.getLeft() + rectangle.getWidth() - width;
 				int top = rectangle.getTop();
 				int height = rectangle.getHeight();
@@ -101,8 +101,8 @@ public class RectangleSplit<TagType> {
 			return arrayList;
 		}
 
-		public int getTotal() {
-			int total = 0;
+		public long getTotal() {
+			long total = 0;
 			int size = size();
 			for (int i = 0; i < size; i++)
 				total += arrayList.get(i).value;

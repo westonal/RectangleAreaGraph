@@ -148,6 +148,19 @@ public class GenericRectangleSplitTests {
 		assertEquals(new Rectangle(4, 0, 6, 10), results.get(2).getRectangle());
 	}
 
+	@Test
+	public void can_split_two_large_items() {
+		splitter.addValue(20000000, newTag("Green"));
+		splitter.addValue(10000000, newTag("Red"));
+		List<SplitResult<SampleClass>> results = splitter.split(new Rectangle(
+				0, 0, 1000, 1000));
+		assertEquals(2, results.size());
+		assertEquals(new Rectangle(0, 0, 333, 1000), results.get(0)
+				.getRectangle());
+		assertEquals(new Rectangle(333, 0, 667, 1000), results.get(1)
+				.getRectangle());
+	}
+
 	private SampleClass newTag(String string) {
 		return new SampleClass(string);
 	}
